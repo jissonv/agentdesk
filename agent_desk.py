@@ -1,4 +1,4 @@
-# @auther Jisson Varghse
+# @auther Jisson Varghese
 # 02/02/2019
 
 # Alogrithm to matach a new serarch against the properites in the db
