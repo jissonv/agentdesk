@@ -49,15 +49,15 @@
 # Find the total weight and order the records according to the wight in desc.
 
 
-
+# The class is used to find mathing properities for a new search.
 class AgentDeskCriteria(object):
 
     LOCATION_WEIGHT = {}
     property_data_from_db = [
         {"id": 1, "latitude": 12.98765, "longitude": 77.67567, "price": 25000, "bedroom": 2, "bathroom": 4,
          "distance": 1},
-        # {"id": 2, "latitude": 12.98765, "longitude": 77.67567, "price": 7000, "bedroom": 1, "bathroom": 3,
-        #  "distance": 1},
+        {"id": 2, "latitude": 12.98765, "longitude": 77.67567, "price": 7000, "bedroom": 1, "bathroom": 3,
+        "distance": 1},
         # {"id": 3, "latitude": 12.98765, "longitude": 77.67567, "price": 10000, "bedroom": 1, "bathroom": 2,
         #  "distance": 1},
         # {"id": 4, "latitude": 12.98765, "longitude": 77.67567, "price": 15000, "bedroom": 2, "bathroom": 5,
@@ -90,7 +90,10 @@ class AgentDeskCriteria(object):
     def new_serach_criteria(self):
 
         # fetch all the places are with in range of 10 miles and
-        # The database query should fetch the records which are in range of 10 miles and the no_of_bedroom in range of
+        # The database query should fetch the records which are in range of 10 miles (using haversine formula)
+        # and price in range of (price - 25 %, price + 25%)
+        # and bedroom in range of(bedroom -2, bedroom+2)
+        # and bathroom b/w (bathroom-2, bathroom+2)
         self.get_properites_from_db()
         price_weight = self.get_price_weight_method()
         bed_room_weight = self.get_bed_room_weight_method()
@@ -104,7 +107,7 @@ class AgentDeskCriteria(object):
             total_wt = item["location_weight"] + item["price_weight"] + item["bedroom_weight"]+ item["bath_room_weight"]
             item["total_wt"] = total_wt
 
-        # order it total_wt des order.
+        # Find the total_wt > 0 in desc order
         print(self.property_data_from_db)
 
 
@@ -123,9 +126,9 @@ class AgentDeskCriteria(object):
 
     def fetch_location_weight(self, item):
         loc_wt = None
+        # if distance b/w 0 and 2 miles.
         if 0 <= item["distance"] <= 2:
             loc_wt = 30
-
         elif 3 <= item["distance"] <= 4:
             loc_wt = 25
 
