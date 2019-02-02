@@ -25,11 +25,11 @@
 # if  min < Price < max   : 30   or   min-min * 1/10 < min <  min + min* 1/10 or max-max * 1/10 < max <  max + max* 1/10
 # else if the Price in not in the given range but its valid give different weights, Divide the exta 25% we choose and\
 # divide it into 5 groups,
-#  so if price in the db is 5% less than given min give a weight of 25/2
-#     if price in the db is in 6-10 % less than given min give a weight of 20/2
-#     if price in the db is 11-15 % less than given min give a weight of 15/2
-#     if price in the db is 16-20 % less than given min give a weight of 10/2
-#     if price in the db is 21-25 %  less than given min give a weight of 5/2
+#  so if price in the db is 5% less than given min give a weight of 25
+#     if price in the db is in 6-10 % less than given min give a weight of 20
+#     if price in the db is 11-15 % less than given min give a weight of 15
+#     if price in the db is 16-20 % less than given min give a weight of 10
+#     if price in the db is 21-25 %  less than given min give a weight of 5
 
 # same is applied for the max
 # so if min = 12500, max = 17500, an item having price 15000 get a 30 weight and if its not in range but near to the range get more weightage
@@ -41,8 +41,8 @@
 
 # Check the given min-2 and max+2 are match with the record and apply weight to each
 # if  min < No of rooms(from db) < max  . Give weight 20
-# min -1 <     Give weight 10/2
-# min -1 <     Give weight 5/2
+# min -1 <     Give weight 10
+# min -1 <     Give weight 5
 # Consider the edge case of min- 2 <= 0.
 
 # apply same logic for Bathroom.
